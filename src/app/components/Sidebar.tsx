@@ -1,16 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import {
-  Home,
-  User,
-  BookOpenText,
-  Phone,
-  BatteryCharging,
-  Wifi,
-  Clock,
-} from "lucide-react";
+import { Home, User, BookOpenText, Phone, Sun, Moon } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const links = [
   { icon: Home, label: "Profile", link: "/" },
@@ -22,11 +16,14 @@ const links = [
 export function Sidebar({ label }: { label?: string }) {
   const pathname = usePathname();
   const active = links.find((l) => l.link === pathname);
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   return (
     <>
-      {/* Desktop sidebar */}
-      <aside className="hidden md:flex sticky left-0 top-0 h-screen w-15 bg-black border-r border-neutral-800">
+      <aside className="hidden md:flex sticky left-0 top-0 h-screen w-15 bg-white dark:bg-black border-r border-neutral-200 dark:border-neutral-800">
         <div className="h-full flex flex-col justify-between items-center py-6 w-full">
           <ul className="flex flex-col gap-6">
             {links.map(({ icon: Icon, link }) => (
@@ -36,8 +33,8 @@ export function Sidebar({ label }: { label?: string }) {
                   className={`flex items-center justify-center w-10 h-10 rounded-md transition
                     ${
                       pathname === link
-                        ? "bg-neutral-800 text-white"
-                        : "text-neutral-500 hover:text-white hover:bg-neutral-800"
+                        ? "bg-neutral-200 dark:bg-neutral-800 text-black dark:text-white"
+                        : "text-neutral-400 dark:text-neutral-500 hover:text-black dark:hover:text-white hover:bg-neutral-200 dark:hover:bg-neutral-800"
                     }
                   `}
                 >
@@ -47,20 +44,20 @@ export function Sidebar({ label }: { label?: string }) {
             ))}
           </ul>
 
-          <div className="rotate-90 text-xs tracking-widest text-neutral-400 uppercase">
+          <div className="rotate-90 text-xs tracking-widest text-neutral-500 dark:text-neutral-400 uppercase">
             {label ?? active?.label ?? "404"}
           </div>
 
-          <div className="flex flex-col items-center gap-4 text-neutral-500">
-            <BatteryCharging size={18} />
-            <Wifi size={18} />
-            <Clock size={18} />
-          </div>
+          <button
+            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            className="flex items-center justify-center w-10 h-10 rounded-md text-neutral-400 dark:text-neutral-500 hover:text-black dark:hover:text-white hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+          >
+            {mounted ? (resolvedTheme === "dark" ? <Moon size={20} /> : <Sun size={20} />) : null}
+          </button>
         </div>
       </aside>
 
-      {/* Mobile bottom nav */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-black border-t border-neutral-800 z-50">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-black border-t border-neutral-200 dark:border-neutral-800 z-50">
         <ul className="flex justify-around items-center py-3">
           {links.map(({ icon: Icon, link }) => (
             <li key={link}>
@@ -69,8 +66,8 @@ export function Sidebar({ label }: { label?: string }) {
                 className={`flex items-center justify-center w-10 h-10 rounded-md transition
                   ${
                     pathname === link
-                      ? "bg-neutral-800 text-white"
-                      : "text-neutral-500 hover:text-white"
+                      ? "bg-neutral-200 dark:bg-neutral-800 text-black dark:text-white"
+                      : "text-neutral-400 dark:text-neutral-500 hover:text-black dark:hover:text-white"
                   }
                 `}
               >
