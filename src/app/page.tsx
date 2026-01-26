@@ -18,13 +18,13 @@ export default function Home() {
               <ImageCard imagedatas={DataImage} />
             </div>
           </div>
-          <div className="flex justify-center lg:justify-start items-center w-full text-center lg:text-left">
+          <div className="flex justify-start items-center w-full text-left">
             <div>
               <h1 className="text-4xl md:text-6xl lg:text-9xl font-bold">
                 Arkadani Fathir Fahrezi
               </h1>
               <p className="text-base md:text-lg lg:text-xl mt-4 dark:text-neutral-300 text-neutral-600">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit autem eaque tempora pariatur in quas nam explicabo. Ipsa, amet ipsum. Pariatur cumque soluta quidem aspernatur ipsam nisi eveniet beatae sint.
+                A passionate web developer who believes that great things come from dedication and continuous learning. I transform ideas into clean, functional code and enjoy solving complex problems one line at a time.
               </p>
             </div>
           </div>

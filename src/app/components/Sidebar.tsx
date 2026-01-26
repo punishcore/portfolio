@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 const links = [
   { icon: Home, label: "Profile", link: "/" },
   { icon: User, label: "About", link: "/about" },
-  { icon: BookOpenText, label: "Project", link: "/project" },
+  { icon: BookOpenText, label: "Projects", link: "/projects" },
   { icon: Phone, label: "Contact", link: "/contact" },
 ];
 
@@ -23,7 +23,7 @@ export function Sidebar({ label }: { label?: string }) {
 
   return (
     <>
-      <aside className="hidden md:flex sticky left-0 top-0 h-screen w-15 bg-white dark:bg-black border-r border-neutral-200 dark:border-neutral-800">
+      <aside className="hidden md:flex fixed left-0 top-0 h-screen w-15 bg-neutral-100 dark:bg-neutral-900">
         <div className="h-full flex flex-col justify-between items-center py-6 w-full">
           <ul className="flex flex-col gap-6">
             {links.map(({ icon: Icon, link }) => (
@@ -57,7 +57,7 @@ export function Sidebar({ label }: { label?: string }) {
         </div>
       </aside>
 
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-black border-t border-neutral-200 dark:border-neutral-800 z-50">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-neutral-100 dark:bg-neutral-900 z-50">
         <ul className="flex justify-around items-center py-3">
           {links.map(({ icon: Icon, link }) => (
             <li key={link}>
@@ -75,6 +75,14 @@ export function Sidebar({ label }: { label?: string }) {
               </Link>
             </li>
           ))}
+          <li>
+            <button
+              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+              className="flex items-center justify-center w-10 h-10 rounded-md text-neutral-400 dark:text-neutral-500 hover:text-black dark:hover:text-white transition"
+            >
+              {mounted ? (resolvedTheme === "dark" ? <Moon size={20} /> : <Sun size={20} />) : null}
+            </button>
+          </li>
         </ul>
       </nav>
     </>

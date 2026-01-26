@@ -15,10 +15,6 @@ export default function Contact() {
             <span>email@example.com</span>
           </div>
           <div className="flex items-center gap-4">
-            <Phone size={20} className="dark:text-neutral-500 text-neutral-400" />
-            <span>+62 xxx xxxx xxxx</span>
-          </div>
-          <div className="flex items-center gap-4">
             <MapPin size={20} className="dark:text-neutral-500 text-neutral-400" />
             <span>Indonesia</span>
           </div>
