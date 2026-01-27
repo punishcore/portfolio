@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Home, User, BookOpenText, Phone, Sun, Moon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import profileImg from "../assets/profile.jpeg";
 
 const links = [
   { icon: Home, label: "Profile", link: "/" },

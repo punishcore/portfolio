@@ -2,7 +2,6 @@ import "./globals.css";
 import { Poppins } from "next/font/google";
 import { Providers } from "@/app/components/Providers";
 import { Sidebar } from "@/app/components/Sidebar";
-import { PageTransition } from "@/app/components/PageTransition";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -10,6 +9,16 @@ const poppins = Poppins({
   display: "swap",
   variable: "--font-poppins",
 });
+
+export const metadata = {
+  title: "Punish | Greetings",
+  description: "Personal portfolio website",
+  icons: {
+    icon: "/favicon.jpg",
+  },
+};
+
+
 
 export default function RootLayout({
   children,
@@ -22,7 +31,7 @@ export default function RootLayout({
         <Providers>
           <main className="overflow-hidden flex w-full">
             <Sidebar />
-            <PageTransition>{children}</PageTransition>
+            <div>{children}</div>
           </main>
         </Providers>
       </body>
